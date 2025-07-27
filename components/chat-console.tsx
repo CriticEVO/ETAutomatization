@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback, memo } from "react"
 import { Send, Terminal, Cpu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,7 +14,22 @@ interface Message {
   timestamp: Date
 }
 
-export function ChatConsole() {
+const MessageItem = memo(function MessageItem({ message }: { message: Message }) {
+  return (
+    <div className={`flex ${message.isUser ? "justify-end" : "justify-start"} animate-fade-in`}>
+      <div
+        className={`max-w-[240px] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 rounded-lg ${
+          message.isUser ? "bg-blue-600 text-white" : "bg-gray-800 text-green-400 border border-gray-700"
+        }`}
+      >
+        <p className="break-words">{message.text}</p>
+        <p className="text-xs opacity-70 mt-1">{message.timestamp.toLocaleTimeString()}</p>
+      </div>
+    </div>
+  )
+})
+
+export const ChatConsole = memo(function ChatConsole() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
@@ -27,24 +42,33 @@ export function ChatConsole() {
   const [isTyping, setIsTyping] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const timeoutRef = useRef<NodeJS.Timeout>()
+
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    const [entry] = entries
+    if (entry.isIntersecting) {
+      setIsVisible(true)
+    }
+  }, [])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 },
-    )
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.1,
+      rootMargin: "50px",
+    })
 
     const element = document.getElementById("chat-console")
     if (element) observer.observe(element)
 
-    return () => observer.disconnect()
-  }, [])
+    return () => {
+      observer.disconnect()
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [handleIntersection])
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = useCallback(async () => {
     if (!inputValue.trim()) return
 
     const userMessage: Message = {
@@ -59,7 +83,7 @@ export function ChatConsole() {
     setIsTyping(true)
 
     // Simulate AI response
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       const responses = [
         "I'd be happy to help you learn more about our AI integration services. What specific area interests you most?",
         "Our AI solutions can significantly improve your business efficiency. Would you like to know more about our automation capabilities?",
@@ -78,14 +102,21 @@ export function ChatConsole() {
       setMessages((prev) => [...prev, aiMessage])
       setIsTyping(false)
     }, 1500)
-  }
+  }, [inputValue])
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      e.preventDefault()
-      handleSendMessage()
-    }
-  }
+  const handleKeyPress = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault()
+        handleSendMessage()
+      }
+    },
+    [handleSendMessage],
+  )
+
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value)
+  }, [])
 
   return (
     <section id="chat-console" className="py-8 sm:py-20 bg-gray-900/50 relative overflow-hidden">
@@ -133,19 +164,7 @@ export function ChatConsole() {
           {/* Chat Messages */}
           <div className="bg-black/95 backdrop-blur-sm border-x border-gray-800/50 h-48 sm:h-96 overflow-y-auto p-3 sm:p-6 space-y-3 sm:space-y-4 font-mono text-xs sm:text-sm">
             {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.isUser ? "justify-end" : "justify-start"} animate-fade-in`}
-              >
-                <div
-                  className={`max-w-[240px] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 rounded-lg ${
-                    message.isUser ? "bg-blue-600 text-white" : "bg-gray-800 text-green-400 border border-gray-700"
-                  }`}
-                >
-                  <p className="break-words">{message.text}</p>
-                  <p className="text-xs opacity-70 mt-1">{new Date().toLocaleTimeString()}</p>
-                </div>
-              </div>
+              <MessageItem key={message.id} message={message} />
             ))}
 
             {isTyping && (
@@ -167,7 +186,7 @@ export function ChatConsole() {
             <div className="flex space-x-2 sm:space-x-3">
               <Input
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
                 placeholder="Type your message here..."
                 className="flex-1 bg-black/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 font-mono text-sm"
@@ -175,7 +194,7 @@ export function ChatConsole() {
               <Button
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim() || isTyping}
-                className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-4 sm:px-6 transition-all duration-300 transform hover:scale-105"
+                className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-4 sm:px-6 transition-all duration-300 transform hover:scale-105 will-change-transform"
               >
                 <Send className="w-4 h-4" />
               </Button>
@@ -189,4 +208,4 @@ export function ChatConsole() {
       </div>
     </section>
   )
-}
+})

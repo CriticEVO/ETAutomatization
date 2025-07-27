@@ -1,13 +1,20 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback, memo } from "react"
 import { ChevronDown, Zap, Brain, Cpu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export function HeroSection() {
+export const HeroSection = memo(function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [currentText, setCurrentText] = useState("")
   const fullText = "Transforming Business with AI Intelligence"
+
+  const scrollToChat = useCallback(() => {
+    const element = document.getElementById("chat-console")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [])
 
   useEffect(() => {
     setIsVisible(true)
@@ -24,30 +31,23 @@ export function HeroSection() {
     return () => clearInterval(timer)
   }, [])
 
-  const scrollToChat = () => {
-    const element = document.getElementById("chat-console")
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
-
   return (
     <section
       id="hero-section"
       className="relative min-h-[80vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-purple-900/20"
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/3 to-cyan-500/3 rounded-full blur-3xl animate-spin-slow"></div>
+      {/* Animated background elements - optimized with transform3d */}
+      <div className="absolute inset-0 will-change-transform">
+        <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl animate-pulse transform-gpu"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-1000 transform-gpu"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/3 to-cyan-500/3 rounded-full blur-3xl animate-spin-slow transform-gpu"></div>
       </div>
 
-      {/* Floating icons */}
-      <div className="absolute inset-0 pointer-events-none">
-        <Zap className="absolute top-1/4 left-1/4 w-8 h-8 text-purple-400/20 animate-float" />
-        <Brain className="absolute top-1/3 right-1/4 w-10 h-10 text-cyan-400/20 animate-float-delayed" />
-        <Cpu className="absolute bottom-1/3 left-1/3 w-6 h-6 text-gray-400/20 animate-float-slow" />
+      {/* Floating icons - optimized */}
+      <div className="absolute inset-0 pointer-events-none will-change-transform">
+        <Zap className="absolute top-1/4 left-1/4 w-8 h-8 text-purple-400/20 animate-float transform-gpu" />
+        <Brain className="absolute top-1/3 right-1/4 w-10 h-10 text-cyan-400/20 animate-float-delayed transform-gpu" />
+        <Cpu className="absolute bottom-1/3 left-1/3 w-6 h-6 text-gray-400/20 animate-float-slow transform-gpu" />
       </div>
 
       <div
@@ -74,27 +74,27 @@ export function HeroSection() {
           <Button
             size="lg"
             onClick={scrollToChat}
-            className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+            className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 will-change-transform"
           >
             Get Started
           </Button>
           <Button
             variant="outline"
             size="lg"
-            className="w-full sm:w-auto border-gray-600 text-gray-300 hover:bg-gray-800 px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 bg-transparent"
+            className="w-full sm:w-auto border-gray-600 text-gray-300 hover:bg-gray-800 px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 bg-transparent will-change-transform"
           >
             Learn More
           </Button>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - optimized */}
       <button
         onClick={scrollToChat}
-        className="absolute bottom-2 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:text-white transition-colors duration-300 cursor-pointer"
+        className="absolute bottom-2 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow hover:text-white transition-colors duration-300 cursor-pointer will-change-transform"
       >
         <ChevronDown className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 hover:text-white transition-colors duration-300" />
       </button>
     </section>
   )
-}
+})

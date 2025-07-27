@@ -18,7 +18,7 @@ export function ChatConsole() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Welcome to ET Automatization AI Assistant! How can I help you today? If you need contact information or anything else, feel free to ask me! 😊",
+      text: "Welcome to E&T Automatization AI Assistant! How can I help you today? If you need contact information or anything else, feel free to ask me! 😊",
       isUser: false,
       timestamp: new Date(),
     },
@@ -88,20 +88,20 @@ export function ChatConsole() {
   }
 
   return (
-    <section id="chat-console" className="py-20 bg-gray-900/50 relative overflow-hidden">
+    <section id="chat-console" className="py-8 sm:py-20 bg-gray-900/50 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-gray-900/50"></div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div
-          className={`text-center mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`text-center mb-8 sm:mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
             Try Our{" "}
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
               AI Assistant
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto px-2">
             Experience the power of AI-driven conversations. Ask questions about our services or get a demo.
           </p>
         </div>
@@ -110,35 +110,35 @@ export function ChatConsole() {
           className={`max-w-4xl mx-auto transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           {/* Console Header */}
-          <div className="bg-black rounded-t-2xl border border-gray-800/50 p-4">
+          <div className="bg-black rounded-t-2xl border border-gray-800/50 p-2 sm:p-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="flex space-x-1 sm:space-x-2">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
                 </div>
-                <div className="flex items-center space-x-2 text-gray-300">
-                  <Terminal className="w-4 h-4" />
-                  <span className="text-sm font-mono">ET-AI-Assistant v2.1.0</span>
+                <div className="flex items-center space-x-1 sm:space-x-2 text-gray-300">
+                  <Terminal className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="text-xs sm:text-sm font-mono">E&T-AI-Assistant v2.1.0</span>
                 </div>
               </div>
-              <div className="flex items-center space-x-2 text-gray-400">
-                <Cpu className="w-4 h-4 animate-pulse" />
+              <div className="flex items-center space-x-1 sm:space-x-2 text-gray-400">
+                <Cpu className="w-3 h-3 sm:w-4 sm:h-4 animate-pulse" />
                 <span className="text-xs">ONLINE</span>
               </div>
             </div>
           </div>
 
           {/* Chat Messages */}
-          <div className="bg-black/95 backdrop-blur-sm border-x border-gray-800/50 h-96 overflow-y-auto p-6 space-y-4 font-mono text-sm">
+          <div className="bg-black/95 backdrop-blur-sm border-x border-gray-800/50 h-48 sm:h-96 overflow-y-auto p-3 sm:p-6 space-y-3 sm:space-y-4 font-mono text-xs sm:text-sm">
             {messages.map((message) => (
               <div
                 key={message.id}
                 className={`flex ${message.isUser ? "justify-end" : "justify-start"} animate-fade-in`}
               >
                 <div
-                  className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                  className={`max-w-[240px] sm:max-w-xs lg:max-w-md px-3 sm:px-4 py-2 rounded-lg ${
                     message.isUser ? "bg-blue-600 text-white" : "bg-gray-800 text-green-400 border border-gray-700"
                   }`}
                 >
@@ -163,24 +163,27 @@ export function ChatConsole() {
           </div>
 
           {/* Input Area */}
-          <div className="bg-black rounded-b-2xl border border-gray-800/50 border-t-0 p-4">
-            <div className="flex space-x-3">
+          <div className="bg-black rounded-b-2xl border border-gray-800/50 border-t-0 p-2 sm:p-4">
+            <div className="flex space-x-2 sm:space-x-3">
               <Input
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Type your message here..."
-                className="flex-1 bg-black/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 font-mono"
+                className="flex-1 bg-black/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 font-mono text-sm"
               />
               <Button
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim() || isTyping}
-                className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-6 transition-all duration-300 transform hover:scale-105"
+                className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-4 sm:px-6 transition-all duration-300 transform hover:scale-105"
               >
                 <Send className="w-4 h-4" />
               </Button>
             </div>
-            <p className="text-xs text-gray-500 mt-2 font-mono">{">"} Press Enter to send • This is a demo interface</p>
+            <p className="text-xs text-gray-500 mt-2 font-mono hidden sm:block">
+              {">"} Press Enter to send • This is a demo interface
+            </p>
+            <p className="text-xs text-gray-500 mt-2 font-mono sm:hidden">{">"} Demo interface</p>
           </div>
         </div>
       </div>

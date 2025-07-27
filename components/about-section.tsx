@@ -23,26 +23,26 @@ export function AboutSection() {
   }, [])
 
   return (
-    <section id="about-section" className="py-20 bg-black relative overflow-hidden">
+    <section id="about-section" className="py-8 sm:py-20 bg-black relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-purple-900/5 to-cyan-900/5"></div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
             About{" "}
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              ET Automatization
+              E&T Automatization
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
             We are pioneers in AI integration, helping businesses unlock their full potential through intelligent
             automation and cutting-edge artificial intelligence solutions.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {[
             {
               icon: Target,
@@ -67,14 +67,14 @@ export function AboutSection() {
           ].map((item, index) => (
             <div
               key={index}
-              className={`bg-gray-900/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-800/30 hover:border-purple-500/30 transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10 ${isVisible ? `opacity-100 translate-y-0 ${item.delay}` : "opacity-0 translate-y-10"}`}
+              className={`bg-gray-900/30 backdrop-blur-sm p-4 sm:p-8 rounded-2xl border border-gray-800/30 hover:border-purple-500/30 transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10 ${isVisible ? `opacity-100 translate-y-0 ${item.delay}` : "opacity-0 translate-y-10"}`}
             >
-              <div className="mb-6">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-4 transform transition-transform duration-300 hover:rotate-12">
-                  <item.icon className="w-8 h-8 text-white" />
+              <div className="mb-4 sm:mb-6">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transform transition-transform duration-300 hover:rotate-12">
+                  <item.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
-                <p className="text-gray-300 leading-relaxed">{item.description}</p>
+                <h3 className="text-lg sm:text-2xl font-bold text-white mb-3 sm:mb-4">{item.title}</h3>
+                <p className="text-gray-300 leading-relaxed text-sm sm:text-base">{item.description}</p>
               </div>
             </div>
           ))}

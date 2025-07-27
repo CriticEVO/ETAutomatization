@@ -33,7 +33,7 @@ export const ChatConsole = memo(function ChatConsole() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Welcome to E&T Automatization AI Assistant! How can I help you today? If you need contact information or anything else, feel free to ask me! 😊",
+      text: "Welcome to E&T Automatization AI Assistant! I can help you with business workflow automatization, AI integration services, process optimization, and workflow performance enhancement. How can I assist you today? 😊",
       isUser: false,
       timestamp: new Date(),
     },
@@ -82,14 +82,15 @@ export const ChatConsole = memo(function ChatConsole() {
     setInputValue("")
     setIsTyping(true)
 
-    // Simulate AI response
+    // Simulate AI response with automatization-focused responses
     timeoutRef.current = setTimeout(() => {
       const responses = [
-        "I'd be happy to help you learn more about our AI integration services. What specific area interests you most?",
-        "Our AI solutions can significantly improve your business efficiency. Would you like to know more about our automation capabilities?",
-        "That's a great question! Our team specializes in custom AI implementations. Let me connect you with one of our experts.",
-        "We offer comprehensive AI consulting services. I can schedule a demo to show you how our solutions work in practice.",
-        "Our AI chatbots and assistants have helped many businesses improve customer satisfaction. Would you like to see some case studies?",
+        "I'd be happy to help you learn more about our business workflow automatization services and AI integration solutions. What specific area of automatization interests you most?",
+        "Our ET automatization solutions can significantly improve your workflow performance and operational efficiency. Would you like to know more about our process automation capabilities?",
+        "That's a great question! Our automatization specialists excel in custom AI implementations and workflow optimization. Let me connect you with one of our automation experts.",
+        "We offer comprehensive automatization consulting services including RPA, AI integration, and business process optimization. I can schedule a demo to show you how our solutions work in practice.",
+        "Our AI-powered automatization solutions have helped many businesses improve productivity and workflow performance. Would you like to see some case studies of successful automatization implementations?",
+        "E&T Automatization specializes in intelligent workflow solutions, process automation, and AI-driven business optimization. How can we help transform your business operations?",
       ]
 
       const aiMessage: Message = {
@@ -120,6 +121,20 @@ export const ChatConsole = memo(function ChatConsole() {
 
   return (
     <section id="chat-console" className="py-8 sm:py-20 bg-gray-900/50 relative overflow-hidden">
+      {/* SEO Hidden Content */}
+      <div className="sr-only">
+        <h2>AI Assistant for Business Workflow Automatization Consulting</h2>
+        <p>
+          Get instant support for your automatization needs with our AI-powered assistant. Ask questions about business
+          workflow automatization, AI integration services, process optimization, workflow performance enhancement, and
+          ET automatization solutions.
+        </p>
+        <p>
+          Our intelligent assistant provides expert guidance on robotic process automation (RPA), enterprise automation,
+          digital transformation, and AI-powered business solutions.
+        </p>
+      </div>
+
       <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-gray-900/50"></div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -127,13 +142,15 @@ export const ChatConsole = memo(function ChatConsole() {
           className={`text-center mb-8 sm:mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
-            Try Our{" "}
+            Try Our Automatization{" "}
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
               AI Assistant
             </span>
           </h2>
           <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto px-2">
-            Experience the power of AI-driven conversations. Ask questions about our services or get a demo.
+            Experience the power of AI-driven conversations about business workflow automatization. Ask questions about
+            our services, get expert advice on process optimization, or request a demo of our intelligent automation
+            solutions.
           </p>
         </div>
 
@@ -151,7 +168,7 @@ export const ChatConsole = memo(function ChatConsole() {
                 </div>
                 <div className="flex items-center space-x-1 sm:space-x-2 text-gray-300">
                   <Terminal className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <span className="text-xs sm:text-sm font-mono">E&T-AI-Assistant v2.1.0</span>
+                  <span className="text-xs sm:text-sm font-mono">E&T-Automatization-Assistant v2.1.0</span>
                 </div>
               </div>
               <div className="flex items-center space-x-1 sm:space-x-2 text-gray-400">
@@ -188,21 +205,23 @@ export const ChatConsole = memo(function ChatConsole() {
                 value={inputValue}
                 onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
-                placeholder="Type your message here..."
+                placeholder="Ask about business workflow automatization, AI integration, or process optimization..."
                 className="flex-1 bg-black/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 font-mono text-sm"
+                aria-label="Chat with AI Assistant about automatization services"
               />
               <Button
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim() || isTyping}
                 className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-4 sm:px-6 transition-all duration-300 transform hover:scale-105 will-change-transform"
+                aria-label="Send message to automatization AI assistant"
               >
                 <Send className="w-4 h-4" />
               </Button>
             </div>
             <p className="text-xs text-gray-500 mt-2 font-mono hidden sm:block">
-              {">"} Press Enter to send • This is a demo interface
+              {">"} Press Enter to send • Ask about automatization services, workflow optimization, or AI integration
             </p>
-            <p className="text-xs text-gray-500 mt-2 font-mono sm:hidden">{">"} Demo interface</p>
+            <p className="text-xs text-gray-500 mt-2 font-mono sm:hidden">{">"} Automatization AI Assistant</p>
           </div>
         </div>
       </div>

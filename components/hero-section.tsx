@@ -36,6 +36,22 @@ export const HeroSection = memo(function HeroSection() {
       id="hero-section"
       className="relative min-h-[80vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-purple-900/20"
     >
+      {/* SEO Hidden Content */}
+      <div className="sr-only">
+        <h1>E&T Automatization - Leading AI Integration and Business Workflow Automation Specialists</h1>
+        <h2>Professional Automatization Services for Enhanced Workflow Performance and Business Optimization</h2>
+        <p>
+          Transform your business with our comprehensive automatization solutions, AI integration services, and
+          intelligent workflow optimization. Our ET automatization experts provide cutting-edge business process
+          automation, workflow performance enhancement, and AI-powered digital transformation services.
+        </p>
+        <p>
+          Specializing in business workflow automatization, process optimization, robotic process automation (RPA),
+          enterprise automation, AI chatbots, data analytics, and intelligent automation consulting for businesses
+          worldwide.
+        </p>
+      </div>
+
       {/* Animated background elements - optimized with transform3d */}
       <div className="absolute inset-0 will-change-transform">
         <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl animate-pulse transform-gpu"></div>
@@ -67,7 +83,7 @@ export const HeroSection = memo(function HeroSection() {
 
         <p className="text-sm sm:text-xl text-gray-400 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed px-2">
           We specialize in seamlessly integrating cutting-edge AI solutions into your business operations, driving
-          efficiency, innovation, and competitive advantage.
+          efficiency, innovation, and competitive advantage through intelligent workflow automatization.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
@@ -75,6 +91,7 @@ export const HeroSection = memo(function HeroSection() {
             size="lg"
             onClick={scrollToChat}
             className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 will-change-transform"
+            aria-label="Get Started with AI Integration and Business Workflow Automation Services"
           >
             Get Started
           </Button>
@@ -82,6 +99,7 @@ export const HeroSection = memo(function HeroSection() {
             variant="outline"
             size="lg"
             className="w-full sm:w-auto border-gray-600 text-gray-300 hover:bg-gray-800 px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 bg-transparent will-change-transform"
+            aria-label="Learn More about ET Automatization Services and Workflow Performance Solutions"
           >
             Learn More
           </Button>
@@ -92,6 +110,7 @@ export const HeroSection = memo(function HeroSection() {
       <button
         onClick={scrollToChat}
         className="absolute bottom-2 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow hover:text-white transition-colors duration-300 cursor-pointer will-change-transform"
+        aria-label="Scroll to AI Assistant and Automation Consulting"
       >
         <ChevronDown className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 hover:text-white transition-colors duration-300" />
       </button>

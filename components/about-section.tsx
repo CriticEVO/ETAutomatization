@@ -30,26 +30,42 @@ export const AboutSection = memo(function AboutSection() {
       icon: Target,
       title: "Our Mission",
       description:
-        "To democratize AI technology and make it accessible for businesses of all sizes, driving innovation and growth.",
+        "To democratize AI technology and make business workflow automatization accessible for businesses of all sizes, driving innovation and operational efficiency through intelligent automation solutions.",
       delay: "delay-200",
     },
     {
       icon: Users,
       title: "Our Team",
-      description: "Expert AI engineers, data scientists, and business consultants dedicated to your success.",
+      description:
+        "Expert AI engineers, data scientists, automation specialists, and business consultants dedicated to delivering exceptional workflow performance optimization and automatization services.",
       delay: "delay-400",
     },
     {
       icon: Lightbulb,
       title: "Our Vision",
       description:
-        "A future where AI seamlessly integrates with human creativity to solve complex business challenges.",
+        "A future where AI seamlessly integrates with human creativity to solve complex business challenges through advanced automatization and intelligent workflow solutions.",
       delay: "delay-600",
     },
   ]
 
   return (
     <section id="about-section" className="py-8 sm:py-20 bg-black relative overflow-hidden">
+      {/* SEO Hidden Content */}
+      <div className="sr-only">
+        <h2>About E&T Automatization - Leading Business Workflow Automatization Experts</h2>
+        <p>
+          E&T Automatization is a premier provider of AI integration services, business workflow automatization
+          solutions, and intelligent process optimization. Our team of automatization specialists delivers cutting-edge
+          workflow performance enhancement and business automation consulting services.
+        </p>
+        <p>
+          We specialize in ET automatization, robotic process automation (RPA), enterprise workflow management,
+          AI-powered business solutions, and digital transformation services for enhanced productivity and operational
+          efficiency.
+        </p>
+      </div>
+
       <div className="absolute inset-0 bg-gradient-to-r from-purple-900/5 to-cyan-900/5"></div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -63,8 +79,9 @@ export const AboutSection = memo(function AboutSection() {
             </span>
           </h2>
           <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
-            We are pioneers in AI integration, helping businesses unlock their full potential through intelligent
-            automation and cutting-edge artificial intelligence solutions.
+            We are pioneers in AI integration and business workflow automatization, helping businesses unlock their full
+            potential through intelligent automation and cutting-edge artificial intelligence solutions that enhance
+            workflow performance and operational efficiency.
           </p>
         </div>
 

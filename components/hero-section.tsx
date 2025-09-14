@@ -9,8 +9,8 @@ export const HeroSection = memo(function HeroSection() {
   const [currentText, setCurrentText] = useState("")
   const fullText = "Transforming Business with AI Intelligence"
 
-  const scrollToChat = useCallback(() => {
-    const element = document.getElementById("chat-console")
+  const scrollToServices = useCallback(() => {
+    const element = document.getElementById("services-section")
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
@@ -89,11 +89,11 @@ export const HeroSection = memo(function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
           <Button
             size="lg"
-            onClick={scrollToChat}
+            onClick={scrollToServices}
             className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 will-change-transform"
-            aria-label="Get Started with AI Integration and Business Workflow Automation Services"
+            aria-label="View Our AI Integration and Business Workflow Automation Services"
           >
-            Get Started
+            View Services
           </Button>
           <Button
             variant="outline"
@@ -108,9 +108,9 @@ export const HeroSection = memo(function HeroSection() {
 
       {/* Scroll indicator - optimized */}
       <button
-        onClick={scrollToChat}
+        onClick={scrollToServices}
         className="absolute bottom-2 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow hover:text-white transition-colors duration-300 cursor-pointer will-change-transform"
-        aria-label="Scroll to AI Assistant and Automation Consulting"
+        aria-label="Scroll to Our Automatization Services"
       >
         <ChevronDown className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 hover:text-white transition-colors duration-300" />
       </button>

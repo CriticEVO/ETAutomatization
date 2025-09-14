@@ -135,7 +135,7 @@ export const ChatConsole = memo(function ChatConsole() {
         </p>
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-gray-900/50"></div>
+     <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-gray-900/50"></div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div

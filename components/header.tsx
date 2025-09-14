@@ -8,15 +8,14 @@ const navigationItems = [
   { name: "Home", id: "hero-section" },
   { name: "About", id: "about-section" },
   { name: "Services", id: "services-section" },
-  { name: "AI Assistant", id: "chat-console" },
 ]
 
 export const Header = memo(function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  const scrollToChat = useCallback(() => {
-    const element = document.getElementById("chat-console")
+  const scrollToServices = useCallback(() => {
+    const element = document.getElementById("services-section")
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
@@ -93,10 +92,10 @@ export const Header = memo(function Header() {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Button
-              onClick={scrollToChat}
+              onClick={scrollToServices}
               className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 will-change-transform"
             >
-              Get Started
+              View Services
             </Button>
           </div>
 
@@ -120,10 +119,10 @@ export const Header = memo(function Header() {
                 </button>
               ))}
               <Button
-                onClick={scrollToChat}
+                onClick={scrollToServices}
                 className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-6 py-2 rounded-full transition-all duration-300 mt-4 will-change-transform"
               >
-                Get Started
+                View Services
               </Button>
             </nav>
           </div>

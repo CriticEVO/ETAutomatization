@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, memo } from "react"
 import { ChevronDown, Zap, Brain, Cpu } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export const HeroSection = memo(function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -64,6 +65,14 @@ export const HeroSection = memo(function HeroSection() {
         <Zap className="absolute top-1/4 left-1/4 w-8 h-8 text-purple-400/20 animate-float transform-gpu" />
         <Brain className="absolute top-1/3 right-1/4 w-10 h-10 text-cyan-400/20 animate-float-delayed transform-gpu" />
         <Cpu className="absolute bottom-1/3 left-1/3 w-6 h-6 text-gray-400/20 animate-float-slow transform-gpu" />
+
+        {/* Floating logo elements */}
+        <div className="absolute top-1/5 right-1/3 w-12 h-12 opacity-10 animate-float-slow transform-gpu">
+          <Image src="/images/etai-logo-clean.png" alt="" fill className="object-contain brightness-150 contrast-125" />
+        </div>
+        <div className="absolute bottom-1/4 left-1/5 w-8 h-8 opacity-5 animate-float-delayed transform-gpu">
+          <Image src="/images/etai-logo-clean.png" alt="" fill className="object-contain brightness-150 contrast-125" />
+        </div>
       </div>
 
       <div

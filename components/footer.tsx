@@ -1,7 +1,7 @@
 "use client"
 
 import { memo } from "react"
-import { Zap } from "lucide-react"
+import Image from "next/image"
 
 export const Footer = memo(function Footer() {
   const currentYear = new Date().getFullYear()
@@ -18,9 +18,14 @@ export const Footer = memo(function Footer() {
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10">
         <div className="flex flex-col items-center justify-center text-center">
           {/* Company Info */}
-          <div className="flex items-center space-x-3 mb-4 sm:mb-6 group">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-purple-600 to-cyan-400 rounded-xl flex items-center justify-center transform transition-all duration-300 group-hover:rotate-12 group-hover:scale-110 will-change-transform">
-              <Zap className="w-5 h-5 sm:w-7 sm:h-7 text-black" />
+          <div className="flex items-center space-x-4 mb-4 sm:mb-6 group">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 relative transform transition-all duration-300 group-hover:scale-110 will-change-transform">
+              <Image
+                src="/images/etai-logo-clean.png"
+                alt="E&T Automatization Logo"
+                fill
+                className="object-contain brightness-110 contrast-110 saturate-90"
+              />
             </div>
             <div>
               <h3 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">

@@ -8,8 +8,13 @@ const services = [
     icon: Bot,
     title: "AI Chatbots & Virtual Assistants",
     description:
-      "Custom AI-powered chatbots and virtual assistants to enhance customer service and internal operations through intelligent automation and workflow optimization.",
-    features: ["24/7 Customer Support Automation", "Natural Language Processing", "Multi-platform Integration"],
+      "Custom AI-powered chatbots and virtual assistants with advanced speech-to-text integration to enhance customer service and internal operations through intelligent automation and workflow optimization.",
+    features: [
+      "24/7 Customer Support Automation",
+      "Speech-to-Text Integration",
+      "Natural Language Processing",
+      "Multi-platform Integration",
+    ],
   },
   {
     icon: Database,

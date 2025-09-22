@@ -1,13 +1,15 @@
 "use client"
 
 import { useState, useEffect, useCallback, memo } from "react"
-import { Menu, X, Zap } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 const navigationItems = [
   { name: "Home", id: "hero-section" },
   { name: "About", id: "about-section" },
   { name: "Services", id: "services-section" },
+  { name: "Contact", id: "contact-section" },
 ]
 
 export const Header = memo(function Header() {
@@ -64,8 +66,14 @@ export const Header = memo(function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center space-x-3 group cursor-pointer">
-            <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-cyan-400 rounded-lg flex items-center justify-center transform transition-all duration-300 group-hover:rotate-12 group-hover:scale-110 will-change-transform">
-              <Zap className="w-6 h-6 text-black" />
+            <div className="w-10 h-10 relative transform transition-all duration-300 group-hover:scale-110 will-change-transform">
+              <Image
+                src="/images/etai-logo-clean.png"
+                alt="E&T Automatization Logo"
+                fill
+                className="object-contain brightness-110 contrast-110 saturate-90"
+                priority
+              />
             </div>
             <div>
               <h1 className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">

@@ -273,6 +273,14 @@ export const metadata: Metadata = {
     "msapplication-TileColor": "#6366f1",
     "theme-color": "#000000",
   },
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico",
+  },
     generator: 'v0.app'
 }
 
@@ -301,6 +309,12 @@ html {
         <meta name="rating" content="general" />
         <meta name="geo.region" content="US" />
         <meta name="geo.placename" content="United States" />
+
+        {/* Favicon Links - Additional fallback */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
         {/* All the JSON-LD scripts remain the same */}
         <script

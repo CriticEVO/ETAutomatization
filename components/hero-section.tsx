@@ -123,14 +123,16 @@ export const HeroSection = memo(function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator - optimized */}
-      <button
-        onClick={scrollToServices}
-        className="absolute bottom-2 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow hover:text-white transition-colors duration-300 cursor-pointer will-change-transform"
-        aria-label="Scroll to Our Automatization Services"
-      >
-        <ChevronDown className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 hover:text-white transition-colors duration-300" />
-      </button>
+      {/* Scroll indicator - perfectly centered using flex-container for precision across all devices */}
+      <div className="absolute bottom-[1rem] sm:bottom-[2rem] left-0 w-full flex justify-center z-20 pointer-events-none">
+        <button
+          onClick={scrollToServices}
+          className="pointer-events-auto p-[1rem] flex items-center justify-center hover:text-white transition-colors duration-300 cursor-pointer group will-change-transform"
+          aria-label="Scroll to Our Automatization Services"
+        >
+          <ChevronDown className="w-[2rem] h-[2rem] sm:w-[2.5rem] sm:h-[2.5rem] text-gray-400 group-hover:text-white transition-colors duration-300 animate-bounce-slow" />
+        </button>
+      </div>
     </section>
   )
 })

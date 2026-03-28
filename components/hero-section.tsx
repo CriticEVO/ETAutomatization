@@ -17,6 +17,13 @@ export const HeroSection = memo(function HeroSection() {
     }
   }, [])
 
+  const scrollToAbout = useCallback(() => {
+    const element = document.getElementById("about-section")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [])
+
   useEffect(() => {
     setIsVisible(true)
     let index = 0
@@ -107,6 +114,7 @@ export const HeroSection = memo(function HeroSection() {
           <Button
             variant="outline"
             size="lg"
+            onClick={scrollToAbout}
             className="w-full sm:w-auto border-gray-600 text-gray-300 hover:bg-gray-800 px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 bg-transparent will-change-transform"
             aria-label="Learn More about ET Automatization Services and Workflow Performance Solutions"
           >

@@ -2,59 +2,55 @@
 
 import { useEffect, useState, useCallback, memo } from "react"
 import { Bot, Database, BarChart3, Cog, Zap, Shield } from "lucide-react"
-
-const services = [
-  {
-    icon: Bot,
-    title: "AI Chatbots & Virtual Assistants",
-    description:
-      "Custom AI-powered chatbots and virtual assistants with advanced speech-to-text integration to enhance customer service and internal operations through intelligent automation and workflow optimization.",
-    features: [
-      "24/7 Customer Support Automation",
-      "Speech-to-Text Integration",
-      "Natural Language Processing",
-      "Multi-platform Integration",
-    ],
-  },
-  {
-    icon: Database,
-    title: "Data Analytics & Machine Learning",
-    description:
-      "Advanced machine learning models and data analytics solutions to extract insights from your data and optimize business workflow performance.",
-    features: ["Predictive Analytics Automation", "Real-time Processing", "Custom ML Models"],
-  },
-  {
-    icon: BarChart3,
-    title: "Business Intelligence & Automation",
-    description:
-      "AI-driven business intelligence platforms that transform raw data into actionable insights for enhanced workflow automatization.",
-    features: ["Interactive Dashboards", "Automated Reporting", "Trend Analysis"],
-  },
-  {
-    icon: Cog,
-    title: "Process Automation & Optimization",
-    description:
-      "Intelligent automation solutions that streamline workflows, reduce manual tasks, and enhance business process efficiency through ET automatization.",
-    features: ["Workflow Optimization", "RPA Integration", "Smart Decision Making"],
-  },
-  {
-    icon: Zap,
-    title: "AI Integration Services",
-    description:
-      "Seamless integration of AI capabilities into your existing systems and applications for comprehensive business workflow automatization.",
-    features: ["API Development", "System Integration", "Performance Optimization"],
-  },
-  {
-    icon: Shield,
-    title: "AI Security & Compliance",
-    description:
-      "Ensure your AI implementations and automatization solutions are secure, ethical, and compliant with industry standards.",
-    features: ["Security Audits", "Compliance Monitoring", "Ethical AI Guidelines"],
-  },
-]
+import { useLanguage } from "@/lib/language-context"
 
 export const ServicesSection = memo(function ServicesSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useLanguage()
+
+  const services = [
+    {
+      icon: Bot,
+      title: t("service1_title"),
+      description: t("service1_desc"),
+      features: [
+        t("service1_f1"),
+        t("service1_f2"),
+        t("service1_f3"),
+        t("service1_f4"),
+      ],
+    },
+    {
+      icon: Database,
+      title: t("service2_title"),
+      description: t("service2_desc"),
+      features: [t("service2_f1"), t("service2_f2"), t("service2_f3")],
+    },
+    {
+      icon: BarChart3,
+      title: t("service3_title"),
+      description: t("service3_desc"),
+      features: [t("service3_f1"), t("service3_f2"), t("service3_f3")],
+    },
+    {
+      icon: Cog,
+      title: t("service4_title"),
+      description: t("service4_desc"),
+      features: [t("service4_f1"), t("service4_f2"), t("service4_f3")],
+    },
+    {
+      icon: Zap,
+      title: t("service5_title"),
+      description: t("service5_desc"),
+      features: [t("service5_f1"), t("service5_f2"), t("service5_f3")],
+    },
+    {
+      icon: Shield,
+      title: t("service6_title"),
+      description: t("service6_desc"),
+      features: [t("service6_f1"), t("service6_f2"), t("service6_f3")],
+    },
+  ]
 
   const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
     const [entry] = entries
@@ -83,24 +79,7 @@ export const ServicesSection = memo(function ServicesSection() {
       {/* SEO Hidden Content */}
       <div className="sr-only">
         <h2>Comprehensive Automatization Services - Business Workflow Automation Solutions</h2>
-        <p>
-          E&T Automatization offers comprehensive business workflow automatization services including AI integration,
-          process optimization, robotic process automation (RPA), intelligent workflow solutions, and enterprise
-          automation consulting.
-        </p>
-        <p>
-          Our automatization experts provide cutting-edge workflow performance optimization, business process
-          automation, AI-powered solutions, and digital transformation services to enhance operational efficiency and
-          productivity.
-        </p>
-        <ul>
-          <li>Business workflow automatization and optimization services</li>
-          <li>AI integration and intelligent automation solutions</li>
-          <li>Process automation and workflow performance enhancement</li>
-          <li>Enterprise automation and digital transformation consulting</li>
-          <li>Robotic process automation (RPA) implementation</li>
-          <li>AI-powered business intelligence and analytics</li>
-        </ul>
+        <p>{t("services_subtitle")}</p>
       </div>
 
       <div className="absolute inset-0">
@@ -113,13 +92,11 @@ export const ServicesSection = memo(function ServicesSection() {
           className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
-            Our Automatization{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Services</span>
+            {t("services_title")}{" "}
+            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">{t("services_span")}</span>
           </h2>
           <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto px-2">
-            Comprehensive AI integration and business workflow automatization solutions tailored to transform your
-            business operations, enhance workflow performance, and drive sustainable growth through intelligent
-            automation.
+            {t("services_subtitle")}
           </p>
         </div>
 

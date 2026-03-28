@@ -2,9 +2,11 @@
 
 import { useEffect, useState, useCallback, memo } from "react"
 import { Target, Users, Lightbulb } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 export const AboutSection = memo(function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useLanguage()
 
   const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
     const [entry] = entries
@@ -28,23 +30,20 @@ export const AboutSection = memo(function AboutSection() {
   const aboutItems = [
     {
       icon: Target,
-      title: "Our Mission",
-      description:
-        "To democratize AI technology and make business workflow automatization accessible for businesses of all sizes, driving innovation and operational efficiency through intelligent automation solutions.",
+      title: t("mission_title"),
+      description: t("mission_desc"),
       delay: "delay-200",
     },
     {
       icon: Users,
-      title: "Our Team",
-      description:
-        "Expert AI engineers, data scientists, automation specialists, and business consultants dedicated to delivering exceptional workflow performance optimization and automatization services.",
+      title: t("team_title"),
+      description: t("team_desc"),
       delay: "delay-400",
     },
     {
       icon: Lightbulb,
-      title: "Our Vision",
-      description:
-        "A future where AI seamlessly integrates with human creativity to solve complex business challenges through advanced automatization and intelligent workflow solutions.",
+      title: t("vision_title"),
+      description: t("vision_desc"),
       delay: "delay-600",
     },
   ]
@@ -54,16 +53,7 @@ export const AboutSection = memo(function AboutSection() {
       {/* SEO Hidden Content */}
       <div className="sr-only">
         <h2>About E&T Automatization - Leading Business Workflow Automatization Experts</h2>
-        <p>
-          E&T Automatization is a premier provider of AI integration services, business workflow automatization
-          solutions, and intelligent process optimization. Our team of automatization specialists delivers cutting-edge
-          workflow performance enhancement and business automation consulting services.
-        </p>
-        <p>
-          We specialize in ET automatization, robotic process automation (RPA), enterprise workflow management,
-          AI-powered business solutions, and digital transformation services for enhanced productivity and operational
-          efficiency.
-        </p>
+        <p>{t("about_subtitle")}</p>
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-r from-purple-900/5 to-cyan-900/5"></div>
@@ -73,15 +63,13 @@ export const AboutSection = memo(function AboutSection() {
           className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
-            About{" "}
+            {t("about_title")}{" "}
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              E&T Automatization
+              {t("hero_title")}
             </span>
           </h2>
           <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
-            We are pioneers in AI integration and business workflow automatization, helping businesses unlock their full
-            potential through intelligent automation and cutting-edge artificial intelligence solutions that enhance
-            workflow performance and operational efficiency.
+            {t("about_subtitle")}
           </p>
         </div>
 

@@ -2,13 +2,18 @@
   "name": "my-v0-project",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "lint": "next lint",
-    "start": "next start"
+    "build": "vite build",
+    "dev": "vite",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "next:build": "next build",
+    "next:dev": "next dev",
+    "next:start": "next start"
   },
   "dependencies": {
+    "vite-tsconfig-paths": "^5.1.4",
     "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
@@ -62,6 +67,8 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "vite": "^6.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",

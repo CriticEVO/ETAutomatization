@@ -1,10 +1,11 @@
 "use client"
 
 import { memo } from "react"
-import Image from "next/image"
+import { useLanguage } from "@/lib/language-context"
 
 export const Footer = memo(function Footer() {
   const currentYear = new Date().getFullYear()
+  const { t } = useLanguage()
 
   return (
     <footer className="bg-black border-t border-gray-800/50 relative overflow-hidden">
@@ -20,23 +21,22 @@ export const Footer = memo(function Footer() {
           {/* Company Info */}
           <div className="flex items-center space-x-4 mb-4 sm:mb-6 group">
             <div className="w-12 h-12 sm:w-14 sm:h-14 relative transform transition-all duration-300 group-hover:scale-110 will-change-transform">
-              <Image
+              <img
                 src="/images/etai-logo-clean.png"
                 alt="E&T Automatization Logo"
-                fill
-                className="object-contain brightness-110 contrast-110 saturate-90"
+                className="w-full h-full object-contain brightness-110 contrast-110 saturate-90"
               />
             </div>
             <div>
               <h3 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                E&T Automatization
+                {t("hero_title")}
               </h3>
-              <p className="text-xs sm:text-sm text-gray-500">AI Integration Specialists</p>
+              <p className="text-xs sm:text-sm text-gray-500">{t("ai_specialists")}</p>
             </div>
           </div>
 
           {/* Copyright */}
-          <p className="text-gray-500 text-xs sm:text-sm">© {currentYear} E&T Automatization. All rights reserved.</p>
+          <p className="text-gray-500 text-xs sm:text-sm">© {currentYear} {t("hero_title")}. {t("all_rights_reserved")}</p>
         </div>
       </div>
     </footer>

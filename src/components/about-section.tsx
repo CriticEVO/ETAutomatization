@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, memo } from "react"
 import { Target, Users, Lightbulb } from "lucide-react"
-import { useLanguage } from "@/lib/language-context"
+import { useLanguage } from "../lib/language-context"
 
 export const AboutSection = memo(function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -18,12 +18,9 @@ export const AboutSection = memo(function AboutSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(handleIntersection, {
       threshold: 0.1,
-      rootMargin: "50px",
     })
-
     const element = document.getElementById("about-section")
     if (element) observer.observe(element)
-
     return () => observer.disconnect()
   }, [handleIntersection])
 
@@ -32,64 +29,72 @@ export const AboutSection = memo(function AboutSection() {
       icon: Target,
       title: t("mission_title"),
       description: t("mission_desc"),
-      delay: "delay-200",
+      color: "text-purple-600",
+      bg: "bg-purple-100/30",
     },
     {
       icon: Users,
       title: t("team_title"),
       description: t("team_desc"),
-      delay: "delay-400",
+      color: "text-blue-600",
+      bg: "bg-blue-100/30",
     },
     {
       icon: Lightbulb,
       title: t("vision_title"),
       description: t("vision_desc"),
-      delay: "delay-600",
+      color: "text-emerald-600",
+      bg: "bg-emerald-100/30",
     },
   ]
 
   return (
-    <section id="about-section" className="py-8 sm:py-20 bg-black relative overflow-hidden">
-      {/* SEO Hidden Content */}
-      <div className="sr-only">
-        <h2>About E&T Automatization - Leading Business Workflow Automatization Experts</h2>
-        <p>{t("about_subtitle")}</p>
-      </div>
-
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-900/5 to-cyan-900/5"></div>
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div
-          className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-        >
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
-            {t("about_title")}{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              {t("hero_title")}
-            </span>
-          </h2>
-          <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-2">
-            {t("about_subtitle")}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {aboutItems.map((item, index) => (
-            <div
-              key={item.title}
-              className={`bg-gray-900/30 backdrop-blur-sm p-4 sm:p-8 rounded-2xl border border-gray-800/30 hover:border-purple-500/30 transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10 will-change-transform ${isVisible ? `opacity-100 translate-y-0 ${item.delay}` : "opacity-0 translate-y-10"}`}
-            >
-              <div className="mb-4 sm:mb-6">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transform transition-transform duration-300 hover:rotate-12 will-change-transform">
-                  <item.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-                </div>
-                <h3 className="text-lg sm:text-2xl font-bold text-white mb-3 sm:mb-4">{item.title}</h3>
-                <p className="text-gray-300 leading-relaxed text-sm sm:text-base">{item.description}</p>
-              </div>
+    <section id="about-section" className="py-32 bg-slate-50 relative overflow-hidden">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+          {/* Header */}
+          <div className="lg:col-span-5">
+            <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
+              <h2 className="text-4xl md:text-7xl font-black text-slate-900 mb-8 leading-[0.9] tracking-tighter">
+                WE BUILD THE<br/>
+                <span className="text-purple-600">NEW STANDARD</span>
+              </h2>
+              <div className="w-20 h-2 bg-slate-900 mb-8"></div>
+              <p className="text-xl text-slate-500 font-medium leading-relaxed">
+                {t("about_subtitle")}
+              </p>
             </div>
-          ))}
+          </div>
+
+          {/* Cards */}
+          <div className="lg:col-span-7">
+            <div className="space-y-6">
+              {aboutItems.map((item, i) => (
+                <div 
+                  key={i}
+                  className={`group bg-white p-10 rounded-[2.5rem] border border-slate-100 transition-all duration-700 hover:shadow-2xl hover:shadow-slate-200/50 flex flex-col md:flex-row gap-8 items-start md:items-center ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                  style={{ transitionDelay: `${i * 200}ms` }}
+                >
+                  <div className={`w-16 h-16 shrink-0 rounded-2xl ${item.bg} flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12`}>
+                    <item.icon className={`w-8 h-8 ${item.color}`} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-500 font-medium leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Background decoration */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-purple-100/20 rounded-full blur-[120px] pointer-events-none"></div>
     </section>
   )
 })

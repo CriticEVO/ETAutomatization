@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect, useCallback, memo } from "react"
-import { Menu, X, Globe } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useLanguage } from "@/lib/language-context"
+import { Menu, X } from "lucide-react"
+import { Button } from "./ui/button"
+import { useLanguage } from "../lib/language-context"
 
 export const Header = memo(function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -37,80 +37,70 @@ export const Header = memo(function Header() {
   }, [])
 
   const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 50)
+    setIsScrolled(window.scrollY > 20)
   }, [])
 
   useEffect(() => {
-    let ticking = false
-
-    const throttledHandleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll()
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    window.addEventListener("scroll", throttledHandleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", throttledHandleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [handleScroll])
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-black/90 backdrop-blur-md border-b border-gray-800/50" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? "py-4 bg-white/70 backdrop-blur-xl border-b border-slate-200/50 shadow-sm" 
+          : "py-6 bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-3 group cursor-pointer" onClick={() => scrollToSection("hero-section")}>
-            <div className="w-10 h-10 relative transform transition-all duration-300 group-hover:scale-110 will-change-transform">
+            <div className="w-10 h-10 relative transform transition-all duration-500 group-hover:rotate-[360deg] will-change-transform">
               <img
                 src="/images/etai-logo-clean.png"
                 alt="E&T Automatization Logo"
-                className="w-full h-full object-contain brightness-110 contrast-110 saturate-90"
+                className="w-full h-full object-contain"
               />
             </div>
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <h1 className="text-xl font-black text-slate-900 tracking-tight">
                 {t("hero_title")}
               </h1>
-              <p className="text-xs text-gray-500 -mt-1">{t("ai_integration")}</p>
+              <p className="text-[10px] uppercase tracking-widest text-purple-600 font-bold -mt-0.5">{t("ai_integration")}</p>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-10">
             {navigationItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-300 hover:text-white transition-colors duration-300 relative group"
+                className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors duration-300 relative group"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
           </nav>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-6">
             {/* Language Switcher */}
-            <div className="flex items-center bg-gray-900/50 rounded-full p-1 border border-gray-800">
+            <div className="flex items-center bg-slate-100 rounded-xl p-1 border border-slate-200/50">
               <button
                 onClick={() => setLanguage("en")}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
-                  language === "en" ? "bg-gradient-to-r from-purple-600 to-cyan-500 text-white" : "text-gray-400 hover:text-white"
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${
+                  language === "en" ? "bg-white text-slate-900 shadow-sm" : "text-slate-400 hover:text-slate-600"
                 }`}
               >
                 EN
               </button>
               <button
                 onClick={() => setLanguage("bg")}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
-                  language === "bg" ? "bg-gradient-to-r from-purple-600 to-cyan-500 text-white" : "text-gray-400 hover:text-white"
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${
+                  language === "bg" ? "bg-white text-slate-900 shadow-sm" : "text-slate-400 hover:text-slate-600"
                 }`}
               >
                 BG
@@ -121,14 +111,14 @@ export const Header = memo(function Header() {
             <div className="hidden md:block">
               <Button
                 onClick={scrollToServices}
-                className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 will-change-transform"
+                className="bg-slate-900 hover:bg-slate-800 text-white px-6 py-5 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg shadow-slate-200"
               >
                 {t("view_services")}
               </Button>
             </div>
 
             {/* Mobile Menu Button */}
-            <button onClick={toggleMobileMenu} className="md:hidden text-white p-2">
+            <button onClick={toggleMobileMenu} className="md:hidden text-slate-900 p-2">
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
@@ -136,20 +126,20 @@ export const Header = memo(function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md border-b border-gray-800/50">
-            <nav className="flex flex-col space-y-4 p-6">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-2xl border-b border-slate-200 shadow-xl animate-fade-in">
+            <nav className="flex flex-col space-y-4 p-8">
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-left"
+                  className="text-lg font-bold text-slate-700 hover:text-purple-600 transition-colors duration-300 text-left"
                 >
                   {item.name}
                 </button>
               ))}
               <Button
                 onClick={scrollToServices}
-                className="bg-gradient-to-r from-purple-600 to-cyan-500 hover:from-purple-700 hover:to-cyan-600 text-white px-6 py-2 rounded-full transition-all duration-300 mt-4 will-change-transform"
+                className="bg-slate-900 hover:bg-slate-800 text-white w-full py-6 rounded-xl font-bold mt-4"
               >
                 {t("view_services")}
               </Button>

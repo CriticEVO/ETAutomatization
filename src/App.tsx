@@ -9,7 +9,7 @@ import { LanguageProvider } from "./lib/language-context"
 function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen bg-background">
         <Header />
         <main>
           <HeroSection />

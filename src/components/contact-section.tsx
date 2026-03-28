@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useState, useCallback, memo } from "react"
-import { Phone, Mail, User } from "lucide-react"
-import { useLanguage } from "@/lib/language-context"
+import { Phone, Mail, User, Send } from "lucide-react"
+import { useLanguage } from "../lib/language-context"
 
 export const ContactSection = memo(function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -18,105 +18,71 @@ export const ContactSection = memo(function ContactSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(handleIntersection, {
       threshold: 0.1,
-      rootMargin: "50px",
     })
-
     const element = document.getElementById("contact-section")
     if (element) observer.observe(element)
-
     return () => observer.disconnect()
   }, [handleIntersection])
 
   return (
-    <section id="contact-section" className="py-8 sm:py-20 bg-black relative overflow-hidden">
-      {/* SEO Hidden Content */}
-      <div className="sr-only">
-        <h2>Contact E&T Automatization - Get in Touch with Our Automation Experts</h2>
-        <p>{t("contact_subtitle")}</p>
-      </div>
+    <section id="contact-section" className="py-32 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+          {/* Header */}
+          <div className="lg:col-span-5">
+            <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
+              <h2 className="text-4xl md:text-7xl font-black text-slate-900 mb-8 leading-[0.9] tracking-tighter">
+                LET'S TALK<br/>
+                <span className="text-purple-600">FUTURE.</span>
+              </h2>
+              <p className="text-xl text-slate-500 font-medium leading-relaxed mb-10">
+                {t("contact_subtitle")}
+              </p>
 
-      {/* Abstract background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl transform-gpu"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl transform-gpu"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-purple-500/3 to-cyan-500/3 rounded-full blur-3xl transform-gpu"></div>
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div
-          className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-        >
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
-            {t("contact_title")}{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              {t("contact_span")}
-            </span>
-          </h2>
-          <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto px-2">
-            {t("contact_subtitle")}
-          </p>
-        </div>
-
-        <div
-          className={`max-w-4xl mx-auto transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-        >
-          {/* Contact Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
-            {/* Enyo Yanakiev */}
-            <div className="bg-gray-900/30 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-gray-800/30 hover:border-purple-500/30 transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10 will-change-transform text-center">
-              <div className="mb-4">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 transform transition-transform duration-300 hover:rotate-12 will-change-transform">
-                  <User className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{t("contact_name_enyo")}</h3>
-                <div className="flex items-center justify-center text-gray-300 mb-2">
-                  <Phone className="w-4 h-4 mr-2 text-purple-400" />
-                  <a
-                    href="tel:+359887185580"
-                    className="hover:text-white transition-colors duration-300"
-                    aria-label={`${t("contact_call")} ${t("contact_name_enyo")}`}
-                  >
-                    {t("contact_phone_enyo")}
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Todor Enchev */}
-            <div className="bg-gray-900/30 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-gray-800/30 hover:border-purple-500/30 transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10 will-change-transform text-center">
-              <div className="mb-4">
-                <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 transform transition-transform duration-300 hover:rotate-12 will-change-transform">
-                  <User className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{t("contact_name_todor")}</h3>
-                <div className="flex items-center justify-center text-gray-300 mb-2">
-                  <Phone className="w-4 h-4 mr-2 text-cyan-400" />
-                  <a
-                    href="tel:+359896767280"
-                    className="hover:text-white transition-colors duration-300"
-                    aria-label={`${t("contact_call")} ${t("contact_name_todor")}`}
-                  >
-                    {t("contact_phone_todor")}
-                  </a>
+              {/* Email Card */}
+              <div className="group bg-slate-900 p-8 rounded-[2rem] transition-all duration-500 hover:shadow-2xl hover:shadow-purple-200/50">
+                <div className="flex items-center space-x-6">
+                  <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center transition-transform group-hover:rotate-12 group-hover:scale-110">
+                    <Send className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-1">Send a message</span>
+                    <a href="mailto:contact@et-automatization.com" className="text-xl sm:text-2xl font-black text-white hover:text-purple-400 transition-colors tracking-tight">
+                      contact@et-automatization.com
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Email Section */}
-          <div className="text-center">
-            <div className="bg-gray-900/30 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-gray-800/30 hover:border-purple-500/30 transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10 will-change-transform inline-block">
-              <div className="flex items-center justify-center text-gray-300 text-lg sm:text-xl">
-                <Mail className="w-5 h-5 mr-3 text-purple-400" />
-                <span className="mr-2">{t("contact_mail")}</span>
-                <a
-                  href="mailto:contact@et-automatization.com"
-                  className="text-white hover:text-purple-300 transition-colors duration-300 font-medium"
-                  aria-label="Send email to E&T Automatization"
+          {/* Contact People */}
+          <div className="lg:col-span-7">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                { name: t("contact_name_enyo"), phone: t("contact_phone_enyo"), role: "AI Strategist", delay: 200 },
+                { name: t("contact_name_todor"), phone: t("contact_phone_todor"), role: "Technical Director", delay: 400 }
+              ].map((person, i) => (
+                <div 
+                  key={i}
+                  className={`group bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 transition-all duration-700 hover:bg-white hover:shadow-2xl hover:shadow-slate-200/50 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                  style={{ transitionDelay: `${person.delay}ms` }}
                 >
-                  contact@et-automatization.com
-                </a>
-              </div>
+                  <div className="w-16 h-16 rounded-2xl bg-white shadow-xl shadow-slate-200/50 flex items-center justify-center mb-8 group-hover:bg-purple-600 transition-colors duration-500">
+                    <User className="w-8 h-8 text-slate-900 group-hover:text-white transition-colors duration-500" />
+                  </div>
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-black text-slate-900 group-hover:text-purple-600 transition-colors">{person.name}</h3>
+                    <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">{person.role}</p>
+                  </div>
+                  <div className="pt-6 border-t border-slate-200/50 flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-purple-600" />
+                    <a href={`tel:${person.phone}`} className="text-lg font-black text-slate-900 hover:text-purple-600 transition-colors">
+                      {person.phone}
+                    </a>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
